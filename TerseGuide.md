@@ -1,4 +1,4 @@
-# Learning Smalltalk
+# Terse Guide to Smalltalk
 
 ## **Allowable Characters**
 
