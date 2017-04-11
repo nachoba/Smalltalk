@@ -40,13 +40,19 @@ First we have to create the accessors of the instance variables
 ```smalltalk
 constant
 	^ constant
-	
+```
+
+```smalltalk
 linearCoefficient
 	^ linearCoefficient
-	
+```
+
+```smalltalk
 quadraticCoefficient
 	^ quadraticCoefficient
+```
 
+```smalltalk
 setQuadraticCoefficient: aNumber1 linearCoefficient: aNumber2 constant: aNumber3
 	quadraticCoefficient := aNumber1.
 	linearCoefficient := aNumber2.
@@ -57,14 +63,18 @@ Now the methods that actually perform the calculation:
 
 ```smalltalk
 calculateRoots
-	"This method sends a message to another method that actually checks if the quadratic              equation has real roots. For now imaginary roots are left aside"
+	"This method sends a message to another method that actually 
+	checks if the quadratic equation has real roots. 
+	For now imaginary roots are left aside"
 	
 	^ self calculateRootsIfNone: [ ^ 'No real solution for the equation' ]
 ```
 
 ```smalltalk
 calculateRootsIfNone: aBlock
-	"The discriminant checks that we are not attempting to calculate the square root of a            negative number, which will produce an error. If the testing is true then the roots are          calculated if not aBlock is evaluated."
+	"The discriminant checks that we are not attempting to calculate the square root of a
+    negative number, which will produce an error. If the testing is true then the roots are
+    calculated if not aBlock is evaluated."
 
 	| discriminant |
       discriminant := linearCoefficient  squared - ( 4 * quadraticCoefficient  * constant).
