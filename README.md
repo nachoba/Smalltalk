@@ -1,3 +1,4 @@
 # Smalltalk
 * Terse Guide for Smalltalk
-* The Towers of Hanoi
+* The Tower of Hanoi
+* Pharo Snippets
