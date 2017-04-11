@@ -1,3 +1,3 @@
 # Smalltalk
-Terse Guide for Smalltalk
-The Towers of Hanoi
+* Terse Guide for Smalltalk
+* The Towers of Hanoi
