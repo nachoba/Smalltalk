@@ -5,3 +5,5 @@
 [The Tower of Hanoi](TowerofHanoi.md)
 
 [Pharo Snippets](PharoSnippets.md)
+
+[99 Problems Solved in Smalltalk](99st.md)
