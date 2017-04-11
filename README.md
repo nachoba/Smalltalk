@@ -7,3 +7,6 @@
 [Pharo Snippets](PharoSnippets.md)
 
 [99 Problems Solved in Smalltalk](99st.md)
+
+[Solving a Quadratic Equation in Smalltalk](QuadraticEquation.md)
+
