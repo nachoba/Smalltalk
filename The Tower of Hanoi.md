@@ -1,6 +1,6 @@
 # The Tower of Hanoi
 
-***for Pharo 5.0 - Ignacio Sniechowski***
+***for Pharo 5.0 - Ignacio Sniechowski* **
 
 *An ancient myth has it that in some temple in the far east, time is marked off by monks engaged in the transfer of 64 disks from one of three pins to another. The universe as we know it will end when they are done. The monks can only move one disk at a time; the disks all have different diameters, and no disk can ever be placed on top of a smaller one.*
 
@@ -131,6 +131,37 @@ The method to push an element onto a stack is `addFirst:`. Now, putting all toge
 ```
 
 
+
+Smalltalk has several methods for transforming aggregate data types (collections). `collect:` is very good example. The general form is:
+
+​										`x collect: [ aBlock ]`
+
+This creates a new collection the same size as `x`, performing the operations specified in `[ aBlock ]`.
+
+Let's make an `Array` with 3 elements, with each element a `new` stack ( an `OrderedCollection`), and store the result in stacks:
+
+```smalltalk
+stacks := (Array new: 3) collect: [ :each | OrderedCollection new].
+```
+
+Think of `collect:` as being just like a `do:`. The local variable `:each` is like an iteration variable, except that its values come from the collection (`Array new: 3`).
+
+
+
+Now let's re-write the `moveDisk: to:` method:
+
+```smalltalk
+moveDisk: fromPin to: toPin
+	"Move a disk from a pin to another pin. Print the results in the transcript"
+	
+	| disk |
+	disk := (stacks at: fromPin) removeFirst.
+	(stacks at: toPin) addFirst: disk.
+	Transcript cr.
+	Transcript show: (fromPin printString, ' => ', toPin printString, ' ').
+	Transcript nextPut: disk.
+	Transcript endEntry.
+```
 
 
 
