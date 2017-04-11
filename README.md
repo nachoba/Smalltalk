@@ -2,11 +2,11 @@
 
 ## **Allowable Characters**
 
-- a - z
-- A - Z
-- 0 - 9
-- . + / \ * ~ < > @ % | & ?
-- bland, tab, cr, ff, lf
+- `a` - `z`
+- `A` - `Z`
+- `0` -`9`
+- `.` `+` `/` `\` `*` `~` `<` `>` `@` `%` `|` `&` `?`
+- blank, tab, carriage return (cr), line feed (lf)
 
 ## **Variables**
 
@@ -61,7 +61,7 @@ Transcript endEntry.                                 "flush the output buffer"
 
 ```smalltalk
 | x y |
-x _ 4.                                                "assignment (Squeak) <-"
+x _ 4.                                                "assignment (Cuis) <-"
 x := 5.                                               "assignment"
 x := y := z := 6.                                     "compound assignment"
 x := (y := 6) + 1.
@@ -213,7 +213,7 @@ x := 15 storeStringBase: 16.
 * Value is last expression evaluated unless explicit return.
 * Blocks may be nested.
 * Specification: `[ arguments | | localvars | expressions ]`
-* Max of three arguments allowed.
+* Maximum of three arguments allowed.
 * `^ expression` terminates block and method (exits all nested blocks).
 * Blocks intended for long term storage should not contain `^`
 
@@ -227,11 +227,11 @@ x := [ | z | z := 1.].                                  "localvars not available
 
 ## **Method Calls**
 
-* Unary methods are messages with no arguments.
+* **Unary** methods are messages with no arguments.
 
-* Binary methods.
+* **Binary** methods.
 
-* Keyword methods are messages with selectors including colons `:`
+* **Keyword** methods are messages with selectors including colons `:`
 
   ​
 
@@ -394,9 +394,9 @@ y := x shuffled.                                      "randomly shuffle string"
 
 ## **Arrays**
 
-* **Array**: Fixed length collection.
-* **ByteArray**: Array limited to byte elements (0 - 255).
-* **WordArray**: Array limited to word elements (0 - 2 ^ 32 )
+* **`Array`**: Fixed length collection.
+* **`ByteArray`**: Array limited to byte elements (0 - 255).
+* **`WordArray`**: Array limited to word elements (0 - 2 ^ 32 )
 
 ```smalltalk
 | b x y sum max |
@@ -447,7 +447,7 @@ y := x asSet.                                     "convert to set collection"
 
 ## **Ordered Collection**
 
-Acts like an expandable array
+Acts like an expandable `Array`
 
 ```smalltalk
 | b x y sum max |
@@ -498,3 +498,468 @@ y := x asBag.                                     "convert to bag collection"
 y := x asSet.                                     "convert to set collection"
 ```
 
+## **Bags**
+
+Like `OrderedCollection` except elements are in no particular order.
+
+```smalltalk
+| b x y sum max |
+x := Bag with: 4 with: 3 with: 2 with: 1.        "create collection with up to 4 elements"
+x := Bag new.                                    "allocate collection"
+x add: 4; add: 3; add: 1; add: 2; yourself.      "add element to collection"
+x add: 3 withOccurrences: 2.                     "add multiple copies to collection"
+y := x addAll: #(7 8 9).                         "add multiple elements to collection"
+y := x removeAll: #(7 8 9).                      "remove multiple elements from collection"
+y := x remove: 4 ifAbsent: [].                   "remove element from collection"
+b := x isEmpty.                                  "test if empty"
+y := x size.                                     "number of elements"
+b := x includes: 3.                              "test if element is in collection"
+y := x occurrencesOf: 3.                         "number of times object in collection"
+x do: [:a | Transcript show: a printString; cr]. "iterate over the collection"
+b := x conform: [:a | (a >= 1) & (a <= 4)].      "test if all elements meet condition"
+y := x select: [:a | a > 2].                     "return collection of elements that pass test"
+y := x reject: [:a | a < 2].                     "return collection of elements that fail test"
+y := x collect: [:a | a + a].                    "transform each element for new collection"
+y := x detect: [:a | a > 3] ifNone: [].          "find position of first element that passes test"
+sum := 0. x do: [:a | sum := sum + a]. sum.      "sum elements"
+sum := x inject: 0 into: [:a :c | a + c].        "sum elements"
+
+max := x inject: 0 into: [:a :c | (a > c)        "find max element in collection"
+   ifTrue: [a]
+   ifFalse: [c]].
+   
+y := x asOrderedCollection.                      "convert to ordered collection"
+y := x asSortedCollection.                       "convert to sorted collection"
+y := x asBag.                                    "convert to bag collection"
+y := x asSet.                                    "convert to set collection"
+```
+
+## **Sets**
+
+**`Set`** is like `Bag` except duplicates are not allowed.**`IdentitySet`** uses identity test `==` rather than `=`.
+
+```smalltalk
+| b x y sum max |
+x := Set with: 4 with: 3 with: 2 with: 1.        "create collection with up to 4 elements"
+x := Set new.                                    "allocate collection"
+x add: 4; add: 3; add: 1; add: 2; yourself.      "add element to collection"
+y := x addAll: #(7 8 9).                         "add multiple elements to collection"
+y := x removeAll: #(7 8 9).                      "remove multiple elements from collection"
+y := x remove: 4 ifAbsent: [].                   "remove element from collection"
+b := x isEmpty.                                  "test if empty"
+y := x size.                                     "number of elements"
+x includes: 4.                                   "test if element is in collection"
+x do: [:a | Transcript show: a printString; cr]. "iterate over the collection"
+b := x conform: [:a | (a >= 1) & (a <= 4)].      "test if all elements meet condition"
+y := x select: [:a | a > 2].                     "return collection of elements that pass test"
+y := x reject: [:a | a < 2].                     "return collection of elements that fail test"
+y := x collect: [:a | a + a].                    "transform each element for new collection"
+y := x detect: [:a | a > 3] ifNone: [].          "find position of first element that passes test"
+sum := 0. x do: [:a | sum := sum + a]. sum.      "sum elements"
+sum := x inject: 0 into: [:a :c | a + c].        "sum elements"
+
+max := x inject: 0 into: [:a :c | (a > c)        "find max element in collection"
+   ifTrue: [a]
+   ifFalse: [c]].
+   
+y := x asArray.                                  "convert to array"
+y := x asOrderedCollection.                      "convert to ordered collection"
+y := x asSortedCollection.                       "convert to sorted collection"
+y := x asBag.                                    "convert to bag collection"
+y := x asSet.                                    "convert to set collection"
+```
+
+## **Interval**
+
+```smalltalk
+| b x y sum max |
+x := Interval from: 5 to: 10.                    "create interval object"
+x := 5 to: 10.
+x := Interval from: 5 to: 10 by: 2.              "create interval object with specified increment"
+x := 5 to: 10 by: 2.
+b := x isEmpty.                                  "test if empty"
+y := x size.                                     "number of elements"
+x includes: 9.                                   "test if element is in collection"
+x do: [:k | Transcript show: k printString; cr]. "iterate over interval"
+b := x conform: [:a | (a >= 1) & (a <= 4)].      "test if all elements meet condition"
+y := x select: [:a | a > 7].                     "return collection of elements that pass test"
+y := x reject: [:a | a < 2].                     "return collection of elements that fail test"
+y := x collect: [:a | a + a].                    "transform each element for new collection"
+y := x detect: [:a | a > 3] ifNone: [].          "find position of first element that passes test"
+sum := 0. x do: [:a | sum := sum + a]. sum.      "sum elements"
+
+sum := 0. 1 to: (x size) do:                     "sum elements"
+			[:a | sum := sum + (x at: a)]. 
+			
+sum := x inject: 0 into: [:a :c | a + c].        "sum elements"
+
+max := x inject: 0 into: [:a :c | (a > c)        "find max element in collection"
+   ifTrue: [a]
+   ifFalse: [c]].
+   
+y := x asArray.                                   "convert to array"
+y := x asOrderedCollection.                       "convert to ordered collection"
+y := x asSortedCollection.                        "convert to sorted collection"
+y := x asBag.                                     "convert to bag collection"
+y := x asSet.                                     "convert to set collection"
+```
+
+## **Associations**
+
+```smalltalk
+| x y |
+x := #myVar->'hello'.
+y := x key.
+y := x value.
+
+```
+
+## **Dictionary**
+
+`IdentityDictionary` uses identity test, `==` rather than `=`
+
+```smalltalk
+| b x y |
+x := Dictionary new.                 "allocate collection"
+
+x    add: #a->4;                     "add element to collection"
+     add: #b->3; 
+     add: #c->1; 
+     add: #d->2; 
+     yourself. 
+     
+x at: #e put: 3.                         "set element at index"
+b := x isEmpty.                          "test if empty"
+y := x size.                             "number of elements"
+y := x at: #a ifAbsent: [].              "retrieve element at index"
+y := x keyAtValue: 3 ifAbsent: [].       "retrieve key for given value with error block"
+y := x removeKey: #e ifAbsent: [].       "remove element from collection"
+b := x includes: 3.                      "test if element is in values collection"
+b := x includesKey: #a.                  "test if element is in keys collection"
+y := x occurrencesOf: 3.                 "number of times object in collection"
+y := x keys.                             "set of keys"
+y := x values.                           "bag of values"
+
+x do: 								   "iterate over the values collection"                         	[:a | Transcript show: a printString; cr].      
+		 
+x keysDo: 							   "iterate over the keys collection"
+	[:a | Transcript show: a printString; cr].  
+
+x associationsDo: 					    "iterate over the associations"
+	[:a | Transcript show: a printString; cr].
+
+x keysAndValuesDo:                        "iterate over keys and values"
+	[:aKey :aValue | Transcript         
+   		show: aKey printString; space;
+   		show: aValue printString; cr].
+   		
+b := x conform: [:a | (a >= 1) & (a <= 4)]. "test if all elements meet condition"
+y := x select: [:a | a > 2].                "return collection of elements that pass test"
+y := x reject: [:a | a < 2].                "return collection of elements that fail test"
+y := x collect: [:a | a + a].               "transform each element for new collection"
+y := x detect: [:a | a > 3] ifNone: [].     "find position of first element that passes test"
+sum := 0. x do: [:a | sum := sum + a]. sum. "sum elements"
+sum := x inject: 0 into: [:a :c | a + c].   "sum elements"
+
+max := x inject: 0 into: [:a :c | (a > c)   "find max element in collection"
+   ifTrue: [a]
+   ifFalse: [c]].
+   
+y := x asArray.                              "convert to array"
+y := x asOrderedCollection.                  "convert to ordered collection"
+y := x asSortedCollection.                   "convert to sorted collection"
+y := x asBag.                                "convert to bag collection"
+y := x asSet.                                "convert to set collection"
+
+Smalltalk at: #CMRGlobal put: 'CMR entry'.   "put global in Smalltalk Dictionary"
+x := Smalltalk at: #CMRGlobal.               "read global from Smalltalk Dictionary"
+Transcript show: (CMRGlobal printString).    "entries are directly accessible by name"
+
+Smalltalk keys do: [ :k |                    "print out all classes"
+   ((Smalltalk at: k) isKindOf: Class)
+      ifFalse: [Transcript show: k printString; cr]].
+      
+Smalltalk at: #CMRDictionary put: (Dictionary new). "set up user defined dictionary"
+CMRDictionary at: #MyVar1 put: 'hello1'.            "put entry in dictionary"
+CMRDictionary add: #MyVar2->'hello2'.               "add entry to dictionary use key->value combo"
+CMRDictionary size.                                 "dictionary size"
+
+CMRDictionary keys do: [ :k |                       "print out keys in dictionary"
+   Transcript show: k printString; cr].
+   
+CMRDictionary values do: [ :k |                     "print out values in dictionary"
+   Transcript show: k printString; cr].
+   
+CMRDictionary keysAndValuesDo: [:aKey :aValue |     "print out keys and values"
+   Transcript
+      show: aKey printString;
+      space;
+      show: aValue printString;
+      cr].
+CMRDictionary associationsDo: [:aKeyValue |         "another iterator for printing key values"
+   Transcript show: aKeyValue printString; cr].
+   
+Smalltalk removeKey:                        "remove entry from Smalltalk dictionary"
+	#CMRGlobal ifAbsent: [].
+    
+Smalltalk removeKey:                        "remove user dictionary from Smalltalk dictionary"
+	#CMRDictionary ifAbsent: [].   
+```
+
+## **Internal Stream**
+
+```smalltalk
+| b x ios |
+ios := ReadStream on: 'Hello read stream'.
+ios := ReadStream on: 'Hello read stream' from: 1 to: 5.
+
+[(x := ios nextLine) notNil]
+   whileTrue: [Transcript show: x; cr].
+   
+ios position: 3.
+ios position.
+x := ios next.
+x := ios peek.
+x := ios contents.
+b := ios atEnd.
+
+ios := ReadWriteStream on: 'Hello read stream'.
+ios := ReadWriteStream on: 'Hello read stream' from: 1 to: 5.
+ios := ReadWriteStream with: 'Hello read stream'.
+ios := ReadWriteStream with: 'Hello read stream' from: 1 to: 10.
+ios position: 0.
+
+[(x := ios nextLine) notNil]
+   whileTrue: [Transcript show: x; cr].
+   
+ios position: 6.
+ios position.
+ios nextPutAll: 'Chris'.
+x := ios next.
+x := ios peek.
+x := ios contents.
+b := ios atEnd.
+```
+
+# **FileStream**
+
+```smalltalk
+| b x ios |
+ios := FileStream newFileNamed: 'ios.txt'.
+ios nextPut: $H; cr.
+ios nextPutAll: 'Hello File'; cr.
+'Hello File' printOn: ios.
+'Hello File' storeOn: ios.
+ios close.
+
+ios := FileStream oldFileNamed: 'ios.txt'.
+
+[(x := ios nextLine) notNil]
+   whileTrue: [Transcript show: x; cr].
+   
+ios position: 3.
+x := ios position.
+x := ios next.
+x := ios peek.
+b := ios atEnd.
+ios close.
+```
+
+## **Date**
+
+```smalltalk
+| x y |
+x := Date today.                                   "create date for today"
+x := Date dateAndTimeNow.                          "create date from current time/date"
+x := Date readFromString: '01/02/1999'.            "create date from formatted string"
+x := Date newDay: 12 month: #July year: 1999       "create date from parts"
+x := Date fromDays: 36000.                         "create date from elapsed days since 1/1/1901"
+y := Date dayOfWeek: #Monday.                      "day of week as int (1-7)"
+y := Date indexOfMonth: #January.                  "month of year as int (1-12)"
+y := Date daysInMonth: 2 forYear: 1996.            "day of month as int (1-31)"
+y := Date daysInYear: 1996.                        "days in year (365|366)"
+y := Date nameOfDay: 1                             "weekday name (#Monday,...)"
+y := Date nameOfMonth: 1.                          "month name (#January,...)"
+y := Date leapYear: 1996.                          "1 if leap year; 0 if not leap year"
+y := x weekday.                                    "day of week (#Monday,...)"
+y := x previous: #Monday.                          "date for previous day of week"
+y := x dayOfMonth.                                 "day of month (1-31)"
+y := x day.                                        "day of year (1-366)"
+y := x firstDayOfMonth.                            "day of year for first day of month"
+y := x monthName.                                  "month of year (#January,...)"
+y := x monthIndex.                                 "month of year (1-12)"
+y := x daysInMonth.                                "days in month (1-31)"
+y := x year.                                       "year (19xx)"
+y := x daysInYear.                                 "days in year (365|366)"
+y := x daysLeftInYear.                             "days left in year (364|365)"
+y := x asSeconds.                                  "seconds elapsed since 1/1/1901"
+y := x addDays: 10.                                "add days to date object"
+y := x subtractDays: 10.                           "subtract days to date object"
+y := x subtractDate: (Date today).                 "subtract date (result in days)"
+y := x printFormat: #(2 1 3 $/ 1 1).               "print formatted date"
+b := (x <= Date today).                            "comparison"
+```
+
+## **Time**
+
+```smalltalk
+| x y |
+x := Time now.                                     "create time from current time"
+x := Time dateAndTimeNow.                          "create time from current time/date"
+x := Time readFromString: '3:47:26 pm'.            "create time from formatted string"
+x := Time fromSeconds: (60 * 60 * 4).              "create time from elapsed time from midnight"
+y := Time millisecondClockValue.                   "milliseconds since midnight"
+y := Time totalSeconds.                            "total seconds since 1/1/1901"
+y := x seconds.                                    "seconds past minute (0-59)"
+y := x minutes.                                    "minutes past hour (0-59)"
+y := x hours.                                      "hours past midnight (0-23)"
+y := x addTime: (Time now).                        "add time to time object"
+y := x subtractTime: (Time now).                   "subtract time to time object"
+y := x asSeconds.                                  "convert time to seconds"
+
+x := Time millisecondsToRun: [                     "timing facility"
+   1 to: 1000 do: [:index | y := 3.14 * index]].
+   
+b := (x <= Time now).                              "comparison"
+```
+
+## **Point**
+
+```smalltalk
+| x y |
+x := 200@100.                                               "obtain a new point"
+y := x x.                                                   "x coordinate"
+y := x y.                                                   "y coordinate"
+x := 200@100 negated.                                       "negates x and y"
+x := (-200@-100) abs.                                       "absolute value of x and y"
+x := (200.5@100.5) rounded.                                 "round x and y"
+x := (200.5@100.5) truncated.                               "truncate x and y"
+x := 200@100 + 100.                                         "add scale to both x and y"
+x := 200@100 - 100.                                         "subtract scale from both x and y"
+x := 200@100 * 2.                                           "multiply x and y by scale"
+x := 200@100 / 2.                                           "divide x and y by scale"
+x := 200@100 // 2.                                          "divide x and y by scale"
+x := 200@100 \\ 3.                                          "remainder of x and y by scale"
+x := 200@100 + 50@25.                                       "add points"
+x := 200@100 - 50@25.                                       "subtract points"
+x := 200@100 * 3@4.                                         "multiply points"
+x := 200@100 // 3@4.                                        "divide points"
+x := 200@100 max: 50@200.                                   "max x and y"
+x := 200@100 min: 50@200.                                   "min x and y"
+x := 20@5 dotProduct: 10@2.                                 "sum of product (x1*x2 + y1*y2)"
+```
+
+## **Dynamic Message Calling / Compiling**
+
+```smalltalk
+| receiver message result argument keyword1 keyword2 argument1 argument2 |
+"unary message"
+receiver := 5.
+message := 'factorial' asSymbol.
+result := receiver perform: message.
+result := Compiler evaluate: ((receiver storeString), ' ', message).
+result := (Message new setSelector: message arguments: #()) sentTo: receiver.
+
+"binary message"
+receiver := 1.
+message := '+' asSymbol.
+argument := 2.
+result := receiver perform: message withArguments: (Array with: argument).
+result := Compiler evaluate: ((receiver storeString), ' ', message, ' ', (argument storeString)).
+result := (Message new setSelector: message arguments: (Array with: argument)) sentTo: receiver.
+
+"keyword messages"
+receiver := 12.
+keyword1 := 'between:' asSymbol.
+keyword2 := 'and:' asSymbol.
+argument1 := 10.
+argument2 := 20.
+result := receiver
+   perform: (keyword1, keyword2) asSymbol
+   withArguments: (Array with: argument1 with: argument2).
+   
+result := Compiler evaluate: 
+		(  (receiver storeString), 
+			' ', 
+			keyword1, 
+			(argument1 storeString) , 
+			' ', 
+			keyword2, 
+			(argument2 storeString)  ).
+			
+result := (Message
+   new
+      setSelector: (keyword1, keyword2) asSymbol
+      arguments: (Array with: argument1 with: argument2))
+   sentTo: receiver.
+```
+
+## **Class & Meta-Class**
+
+```smalltalk
+| b x |
+x := String name.                           "class name"
+x := String category.                       "organization category"
+x := String comment.                        "class comment"
+x := String kindOfSubclass.                 "subclass type - subclass: variableSubclass, etc"
+x := String definition.                     "class definition"
+x := String instVarNames.                   "immediate instance variable names"
+x := String allInstVarNames.                "accumulated instance variable names"
+x := String classVarNames.                  "immediate class variable names"
+x := String allClassVarNames.               "accumulated class variable names"
+x := String sharedPools.                    "immediate dictionaries used as shared pools"
+x := String allSharedPools.                 "accumulated dictionaries used as shared pools"
+x := String selectors.                      "message selectors for class"
+x := String sourceCodeAt: #size.            "source code for specified method"
+x := String allInstances.                   "collection of all instances of class"
+x := String superclass.                     "immediate superclass"
+x := String allSuperclasses.                "accumulated superclasses"
+x := String withAllSuperclasses.            "receiver class and accumulated superclasses"
+x := String subclasses.                     "immediate subclasses"
+x := String allSubclasses.                  "accumulated subclasses"
+x := String withAllSubclasses.              "receiver class and accumulated subclasses"
+b := String instSize.                       "number of named instance variables"
+b := String isFixed.                        "true if no indexed instance variables"
+b := String isVariable.                     "true if has indexed instance variables"
+b := String isPointers.                     "true if index instance vars contain objects"
+b := String isBits.                         "true if index instance vars contain bytes/words"
+b := String isBytes.                        "true if index instance vars contain bytes"
+b := String isWords.                        "true if index instance vars contain words"
+Object withAllSubclasses size.              "get total number of class entries"
+```
+
+## **Debugging**
+
+```smalltalk
+| a b x |
+x yourself.                                   "returns receiver"
+String browse.                                "browse specified class"
+x inspect.                                    "open object inspector window"
+x confirm: 'Is this correct?'.
+x halt.                                        "breakpoint to open debugger window"
+x halt: 'Halt message'.
+x notify: 'Notify text'.
+x error: 'Error string'.                       "open up error window with title"
+x doesNotUnderstand: #cmrMessage.              "flag message is not handled"
+x shouldNotImplement.                          "flag message should not be implemented"
+x subclassResponsibility.                      "flag message as abstract"
+x errorImproperStore.                          "flag an improper store into indexable object"
+x errorNonIntegerIndex.                        "flag only integers should be used as index"
+x errorSubscriptBounds.                        "flag subscript out of bounds"
+x primitiveFailed.                             "system primitive failed"
+
+a := 'A1'. b := 'B2'. a become: b.             "switch two objects"
+Transcript show: a, b; cr.
+```
+
+## **Miscelaneous**
+
+```smalltalk
+| x |
+"Smalltalk condenseChanges."                                "compress the change file"
+x := FillInTheBlank request: 'Prompt Me'.                   "prompt user for input"
+x := UIManager default request: 'Prompt Me'.                "prompt user for input using a flexible UI dispatcher"
+Utilities openCommandKeyHelp
+```
+
+*Credits go to the original creator Chris Rathman*  [http://www.angelfire.com/tx4/cus/notes/smalltalk.html](http://www.angelfire.com/tx4/cus/notes/smalltalk.html)
