@@ -171,7 +171,24 @@ x := Float pi.                                       "pi"
 x := Float e.                                        "exp constant"
 x := Float infinity.                                 "infinity"
 x := Float nan.                                      "not-a-number"
-x := Random new next; yourself. x next.              "random number stream (0.0 to 1.0)
+x := Random new next; yourself. x next.              "random number stream (0.0 to 1.0)"
 x := 100 atRandom.                                   "quick random number"
+```
+
+## **Bitwise Manipulation**
+
+```smalltalk
+| b x |
+x := 16rFF bitAnd: 16r0F.                         "and bits"
+x := 16rF0 bitOr: 16r0F.                          "or bits"
+x := 16rFF bitXor: 16r0F.                         "xor bits"
+x := 16rFF bitInvert.                             "invert bits"
+x := 16r0F bitShift: 4.                           "left shift"
+x := 16rF0 bitShift: -4.                          "right shift"
+"x := 16r80 bitAt: 7."                            "bit at position (0|1) [!Squeak]"
+x := 16r80 highbit.                               "position of highest bit set"
+b := 16rFF allMask: 16r0F.                        "test if all bits set in mask set in receiver"
+b := 16rFF anyMask: 16r0F.                        "test if any bits set in mask set in receiver"
+b := 16rFF noMask: 16r0F.                         "test if all bits set in mask clear in receiver"
 ```
 
