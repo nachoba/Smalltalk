@@ -60,7 +60,7 @@ Transcript endEntry.                                 "flush the output buffer"
 
 
 
-## **Assignement**
+## **Assignment**
 
 ```smalltalk
 | x y |
@@ -78,5 +78,44 @@ y := x copy.                                          "copy object"
 y := x shallowCopy.                                   "copy object (not overridden)"
 y := x deepCopy.                                      "copy object and instance vars"
 y := x veryDeepCopy.                                  "complete tree copy using a dictionary"
+```
+
+## **Booleans**
+
+```smalltalk
+| b x y |
+x := 1. y := 2.
+b := (x = y).                                          "equals"
+b := (x ~= y).                                         "not equals"
+b := (x == y).                                         "identical"
+b := (x ~~ y).                                         "not identical"
+b := (x > y).                                          "greater than"
+b := (x < y).                                          "less than"
+b := (x >= y).                                         "greater than or equal"
+b := (x <= y).                                         "less than or equal"
+b := b not.                                            "boolean not"
+b := (x < 5) & (y > 1).                                "boolean and"
+b := (x < 5) | (y > 1).                                "boolean or"
+b := (x < 5) and: [y > 1].                             "boolean and (short-circuit)"
+b := (x < 5) or: [y > 1].                              "boolean or (short-circuit)"
+b := (x < 5) eqv: (y > 1).                             "test if both true or both false"
+b := (x < 5) xor: (y > 1).                             "test if one true and other false"
+b := 5 between: 3 and: 12.                             "between (inclusive)"
+b := 123 isKindOf: Number.                             "test if object is class or subclass of"
+b := 123 isMemberOf: SmallInteger.                     "test if object is type of class"
+b := 123 respondsTo: sqrt.                             "test if object responds to message"
+b := x isNil.                                          "test if object is nil"
+b := x isZero.                                         "test if number is zero"
+b := x positive.                                       "test if number is positive"
+b := x strictlyPositive.                               "test if number is greater than zero"
+b := x negative.                                       "test if number is negative"
+b := x even.                                           "test if number is even"
+b := x odd.                                            "test if number is odd"
+b := x isLiteral.                                      "test if literal constant"
+b := x isInteger.                                      "test if object is integer"
+b := x isFloat.                                        "test if object is float"
+b := x isNumber.                                       "test if object is number"
+b := $A isUppercase.                                   "test if upper case character"
+b := $A isLowercase.                                    "test if lower case character"
 ```
 
