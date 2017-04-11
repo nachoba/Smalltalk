@@ -1,6 +1,6 @@
 # The Tower of Hanoi
 
-***for Pharo 5.0 - Ignacio Sniechowski* **
+***for Pharo 5.0 - Ignacio Sniechowski***
 
 *An ancient myth has it that in some temple in the far east, time is marked off by monks engaged in the transfer of 64 disks from one of three pins to another. The universe as we know it will end when they are done. The monks can only move one disk at a time; the disks all have different diameters, and no disk can ever be placed on top of a smaller one.*
 
