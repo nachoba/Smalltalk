@@ -19,16 +19,16 @@ Object subclass: #QuadraticEquation
 
 Let's add some comment to the class:
 
-```smalltalk
+```code
 A QuadraticEquation is a class used to solve Quadratic Equations of the form: ax^2 + bx + c = 0, where a is not 0.
 
 You can set the coefficients using the following method:
 setQuadraticCoefficient:  linearCoefficient:  constant: 
 Example: Find the roots of -3x^2+2x+2=0
 Answer (-0.5485837703548636 1.2152504370215302)
+```
 
-print(it)
-
+```smalltalk
 | anEquation |
 anEquation := QuadraticEquation new.
 anEquation setQuadraticCoefficient: -3 linearCoefficient: 2 constant: 2. 
