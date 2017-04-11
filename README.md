@@ -58,8 +58,6 @@ Transcript cr.                                       "carriage return / linefeed
 Transcript endEntry.                                 "flush the output buffer"
 ```
 
-
-
 ## **Assignment**
 
 ```smalltalk
@@ -116,6 +114,64 @@ b := x isInteger.                                      "test if object is intege
 b := x isFloat.                                        "test if object is float"
 b := x isNumber.                                       "test if object is number"
 b := $A isUppercase.                                   "test if upper case character"
-b := $A isLowercase.                                    "test if lower case character"
+b := $A isLowercase.                                   "test if lower case character"
+```
+
+## **Arithmetic Expressions**
+
+```smalltalk
+| x |
+x := 6 + 3.                                          "addition"
+x := 6 - 3.                                          "subtraction"
+x := 6 * 3.                                          "multiplication"
+x := 1 + 2 * 3.                                      "evaluation always left to right (1 + 2) * 3"
+x := 5 / 3.                                          "division with fractional result"
+x := 5.0 / 3.0.                                      "division with float result"
+x := 5.0 // 3.0.                                     "integer divide"
+x := 5.0 \\ 3.0.                                     "integer remainder"
+x := -5.                                             "unary minus"
+x := 5 sign.                                         "numeric sign (1, -1 or 0)"
+x := 5 negated.                                      "negate receiver"
+x := 1.2 integerPart.                                "integer part of number (1.0)"
+x := 1.2 fractionPart.                               "fractional part of number (0.2)"
+x := 5 reciprocal.                                   "reciprocal function"
+x := 6 * 3.1.                                        "auto convert to float"
+x := 5 squared.                                      "square function"
+x := 25 sqrt.                                        "square root"
+x := 5 raisedTo: 2.                                  "power function"
+x := 5 raisedToInteger: 2.                           "power function with integer"
+x := 5 exp.                                          "exponential"
+x := -5 abs.                                         "absolute value"
+x := 3.99 rounded.                                   "round"
+x := 3.99 truncated.                                 "truncate"
+x := 3.99 roundTo: 1.                                "round to specified decimal places"
+x := 3.99 truncateTo: 1.                             "truncate to specified decimal places"
+x := 3.99 floor.                                     "truncate"
+x := 3.99 ceiling.                                   "round up"
+x := 5 factorial.                                    "factorial"
+x := -5 quo: 3.                                      "integer divide rounded toward zero"
+x := -5 rem: 3.                                      "integer remainder rounded toward zero"
+x := 28 gcd: 12.                                     "greatest common denominator"
+x := 28 lcm: 12.                                     "least common multiple"
+x := 100 ln.                                         "natural logarithm"
+x := 100 log.                                        "base 10 logarithm"
+x := 100 log: 10.                                    "logarithm with specified base"
+x := 100 floorLog: 10.                               "floor of the log"
+x := 180 degreesToRadians.                           "convert degrees to radians"
+x := 3.14 radiansToDegrees.                          "convert radians to degrees"
+x := 0.7 sin.                                        "sine"
+x := 0.7 cos.                                        "cosine"
+x := 0.7 tan.                                        "tangent"
+x := 0.7 arcSin.                                     "arcsine"
+x := 0.7 arcCos.                                     "arccosine"
+x := 0.7 arcTan.                                     "arctangent"
+x := 10 max: 20.                                     "get maximum of two numbers"
+x := 10 min: 20.                                     "get minimum of two numbers"
+x := Float pi.                                       "pi"
+x := Float e.                                        "exp constant"
+x := Float infinity.                                 "infinity"
+x := Float nan.                                      "not-a-number"
+x := Random new next; yourself. x next.              "random number stream (0.0 to 1.0)
+x := 100 atRandom.                                   "quick random number"
 ```
 
