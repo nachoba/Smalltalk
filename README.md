@@ -1,5 +1,11 @@
 # Learning Smalltalk
 
+
+
+[TOC]
+
+
+
 ## **Allowable Characters**
 
 - a - z
@@ -28,16 +34,15 @@
 - **Class Instance:** unique to each instance of a class.
 - **Instance Variables:** unique to each instance.
 
-## Comments
+## **Comments**
 
 ```smaltalk
 "Comments are enclosed in quotes"
-
 ```
 
 
 
-## Statement Separator `.`
+## **Statement Separator `.`**
 
 The period `.` is the statement separator.
 
@@ -185,7 +190,7 @@ x := 16rFF bitXor: 16r0F.                         "xor bits"
 x := 16rFF bitInvert.                             "invert bits"
 x := 16r0F bitShift: 4.                           "left shift"
 x := 16rF0 bitShift: -4.                          "right shift"
-"x := 16r80 bitAt: 7."                            "bit at position (0|1) [!Squeak]"
+x := 16r80 bitAt: 7.                              "bit at position (0|1) [!Squeak]"
 x := 16r80 highbit.                               "position of highest bit set"
 b := 16rFF allMask: 16r0F.                        "test if all bits set in mask set in receiver"
 b := 16rFF anyMask: 16r0F.                        "test if any bits set in mask set in receiver"
