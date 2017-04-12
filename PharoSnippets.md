@@ -60,6 +60,10 @@ Object subclass: #TestClass
        classVariableNames: '' 
        package: 'IS-Test'. 
 
+"Add a comment to the class"
+TestClass comment: 'This is a test class'.
+
+
 "Add some methods"
 TestClass compile:
 'one 
