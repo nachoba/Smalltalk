@@ -56,26 +56,26 @@ file close.
 ```smalltalk
 "Create the class"
 Object subclass: #TestClass 
-		 instanceVariableNames: 'one'  
-		 classVariableNames: '' 
-		 package: 'IS-Test'. 
+       instanceVariableNames: 'one'  
+       classVariableNames: '' 
+       package: 'IS-Test'. 
 
 "Add some methods"
 TestClass compile:
 'one 
-	^one' 
-			 classified: 'accessor'.
+    ^one' 
+          classified: 'accessor'.
 
 TestClass compile: 
 'one: aNumber 
-	one := aNumber'
-			 classified: 'accessor'.
+   one := aNumber'
+          classified: 'accessor'.
 
 TestClass compile: 
 'printMe
-	"Print in the Transcript"
-	Transcript open.
-	Transcript show: self one; cr'
-			 classified: 'printing'.
+   "Print in the Transcript"
+   Transcript open.
+   Transcript show: self one; cr'
+          classified: 'printing'.
 ```
 
