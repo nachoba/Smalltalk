@@ -83,3 +83,43 @@ TestClass compile:
           classified: 'printing'.
 ```
 
+**Command-Line Pharo**
+
+This shows how to execute code from the command line. We want to run:
+
+```smalltalk
+# Create a class
+Object subclass: #TestClass 
+       instanceVariableNames: 'one' 
+       classVariableNames: '' 
+       package: 'IS-Test'. 
+
+# Wait a little to get the whole class compiled
+(Delay forSeconds: 3) wait. 
+
+# Define two methods
+TestClass compile:'one ^one' classified: 'accessor'. 
+TestClass compile: 'one: aNumber one := aNumber' classified: 'accessor'. 
+
+# Test the class
+aTest := TestClass new. 
+aTest one: 25. 
+aTest one.
+```
+
+The output of this should be: `25`.
+
+We have to enter:
+
+`./Pharo --headless imageName.image eval "codeGoesHere"`
+
+So, it will be:
+
+```smalltalk
+# For Windows
+PharoConsole --headless Pharo-minimal.image eval "Object subclass: #TestClass instanceVariableNames: 'one' classVariableNames: '' package: 'IS-Test'. (Delay forSeconds: 3) wait. TestClass compile:'one ^one' classified: 'accessor'. TestClass compile: 'one: aNumber one := aNumber' classified: 'accessor'. TestClass compile: 'printMe Transcript show: (one printString).' classified: 'printing'. aTest := TestClass new. aTest one: 25. aTest one"
+
+# For *NIX
+./Pharo --headless Pharo-minimal.image eval "Object subclass: #TestClass instanceVariableNames: 'one' classVariableNames: '' package: 'IS-Test'. (Delay forSeconds: 3) wait. TestClass compile:'one ^one' classified: 'accessor'. TestClass compile: 'one: aNumber one := aNumber' classified: 'accessor'. TestClass compile: 'printMe Transcript show: (one printString).' classified: 'printing'. aTest := TestClass new. aTest one: 25. aTest one"
+```
+
