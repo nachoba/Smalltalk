@@ -5,7 +5,7 @@ Smalltalk is a beautiful language. I love to program in that immersive experienc
 So, what's wrong with Smalltalk?
 
 Well, although the language it is clear, pure, and simple. Although the tools are useful and can be customized to suite my needs. Although object-orientation is taken to the last consequences. Smalltalk is not easy. Getting to know the class library and methods, creating code that is *good* and *beautiful* is difficult.
-
+I want something that tells **me** what I want the computer to do, and at the same time *do that*.
 Wouldn't be easier to see something like this:
 
 ### A Theme for Pharo that resembles macOS
