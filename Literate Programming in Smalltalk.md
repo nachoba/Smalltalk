@@ -41,7 +41,7 @@ PharoSierraTheme >> newWindowMinimizeForm
 						^ self iconNamed: #testYellow
 ```
 
-![buttons](C:\Users\Nacho\Desktop\buttons.JPG)
+![buttons](buttons.JPG)
 
 Good, that was what I wanted. But also I want that these three buttons, when in passive mode turn to gray. So I've overrided these additional methods
 
@@ -63,7 +63,7 @@ PharoSierraTheme >> windowMinimizePasiveForm
 						^ self iconNamed: #testNotRun
 ```
 
-![buttonsPassive](C:\Users\Nacho\Desktop\buttonsPassive.JPG)
+![buttonsPassive](buttonsPassive.JPG)
 
 Perfect? Not yet, when I move the mouse pointer over the buttons they turn to the old style. So I figured out that I had three more methods to override:
 
@@ -113,7 +113,7 @@ PharoSierraTheme class >> themeName
 							^ 'Sierra'
 ```
 
-![name](C:\Users\Nacho\Desktop\name.JPG)
+![name](name.JPG)
 
 ### The dumbest divorce ever: documentation and code
 
