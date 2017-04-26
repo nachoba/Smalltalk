@@ -4,7 +4,7 @@ Smalltalk is a beautiful language. I love to program in that immersive experienc
 
 So, what's wrong with Smalltalk?
 
-Well, although the language it is clear, pure, and simple. Although the tools are useful and can be customized to suite my needs. Although object-orientantion is taken to the last consequences. Smalltalk is not easy. Getting to know the class library and methods, creating code that is *good* and *beautiful* is difficult.
+Well, although the language it is clear, pure, and simple. Although the tools are useful and can be customized to suite my needs. Although object-orientation is taken to the last consequences. Smalltalk is not easy. Getting to know the class library and methods, creating code that is *good* and *beautiful* is difficult.
 
 Wouldn't be easier to see something like this:
 
@@ -119,4 +119,5 @@ PharoSierraTheme class >> themeName
 What I did previously was a *tutorial*, a simple walk-through of how to get what I wanted to achive, with explanations, code, and pictures in it. Nice. Useful. But why not actually run that code inside the image?
 
 Yes this document that you are now reading, literate Smalltalk programming: code, explanations, and pictures all together.
+See this in the image, execute it in the image and of course save it in the image. After that the code could be accessed through the browser, and treated as part of the system.
 
