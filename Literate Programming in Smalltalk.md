@@ -25,20 +25,20 @@ So I've overrided these:
 
 ```smalltalk
 PharoSierraTheme >> newWindowCloseForm
-						"Anser a new form for a window close box"
-						^ self iconNamed: #testRed
+			"Anser a new form for a window close box"
+			^ self iconNamed: #testRed
 ```
 
 ```smalltalk
 PharoSierraTheme >> newWindowMaximizeForm
-						"Answer a new form for a window maximize box"
-						^ self iconNamed: #testGreen
+			"Answer a new form for a window maximize box"
+			^ self iconNamed: #testGreen
 ```
 
 ```smalltalk
 PharoSierraTheme >> newWindowMinimizeForm
-						"Anser a new form for a window minimize box"
-						^ self iconNamed: #testYellow
+			"Anser a new form for a window minimize box"
+			^ self iconNamed: #testYellow
 ```
 
 ![buttons](buttons.JPG)
@@ -47,20 +47,20 @@ Good, that was what I wanted. But also I want that these three buttons, when in 
 
 ```smalltalk
 PharoSierraTheme >> windowClosePasiveForm
-						"Answer the form to use for passive window close buttons"
-						^ self iconNamed: #testNotRun
+			"Answer the form to use for passive window close buttons"
+			^ self iconNamed: #testNotRun
 ```
 
 ```smalltalk
 PharoSierraTheme >> windowMaximizePasiveForm
-						"Answer the form to use for passive window maximize buttons"
-						^ self iconNamed: #testNotRun
+			"Answer the form to use for passive window maximize buttons"
+			^ self iconNamed: #testNotRun
 ```
 
 ```smalltalk
 PharoSierraTheme >> windowMinimizePasiveForm
-						"Answer the form to use for passive window minimize buttons"
-						^ self iconNamed: #testNotRun
+			"Answer the form to use for passive window minimize buttons"
+			^ self iconNamed: #testNotRun
 ```
 
 ![buttonsPassive](buttonsPassive.JPG)
@@ -69,48 +69,47 @@ Perfect? Not yet, when I move the mouse pointer over the buttons they turn to th
 
 ```smalltalk
 PharoSierraTheme >> newWindowCloseOverForm
-						^ self newWindowCloseForm
+			^ self newWindowCloseForm
 ```
 
 ```smalltalk
 PharoSierraTheme >> newWindowMaximizeOverForm
-						^ self newWindowMaximizeForm
+			^ self newWindowMaximizeForm
 ```
 
 ```smalltalk
 PharoSierraTheme >> newWindowMinimizeOverForm
-						^ self newWindowMinimizeForm
+			^ self newWindowMinimizeForm
 ```
 
 Now I want the windows to drop shadows, so I set the color of the shadow and enable that effect:
 
 ```smalltalk
 PharoSierraTheme >> configureWindowDropShadowFor: aWindow
-						aWindow hasDropShadow: true
+			aWindow hasDropShadow: true
 ```
 
 ```smalltalk
-PharoSierraTheme >>	windowShadowColor
-						"Answer the window shadow color to use."
-						^ Color gray lighter 
+PharoSierraTheme >>  windowShadowColor
+			"Answer the window shadow color to use."
+			^ Color gray lighter 
 ```
 
 Also I was not very happy with the form that scrollbars had in the original theme I wanted something thinner:
 
 ```smalltalk
 PharoSierraTheme >> scrollbarNormalThumbBorderStyle: aScrollbar
-						"Return the normal thumb borderStyle for the given
-						 scrollbar"
-						 ^ BorderStyle simple
-						 		width: 2;
-						 		baseColor: Color transparent
+			"Return the normal thumb borderStyle for the given scrollbar"
+			^ BorderStyle simple
+				width: 2;
+				baseColor: Color transparent
 ```
 
 Finally I want the Settings Manager to take notice of my new theme. I do this by adding a class-side method:
 
 ```smalltalk
 PharoSierraTheme class >> themeName
-							^ 'Sierra'
+				^ 'Sierra'
 ```
 
 ![name](name.JPG)
