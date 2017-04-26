@@ -10,3 +10,5 @@
 
 [Solving a Quadratic Equation in Smalltalk](QuadraticEquation.md)
 
+
+[Literate Smalltalk Programming](LiterateSmalltalkProgramming.md)
