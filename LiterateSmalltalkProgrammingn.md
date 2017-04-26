@@ -1,4 +1,4 @@
-# Literate Programming in Smalltalk
+# Literate Smalltalk Programming
 
 Smalltalk is a beautiful language. I love to program in that immersive experience that is to code in this language, environment, and library. All the code is there, all the tools are written in that language and accessible to me, evertyhing is transparent and reflective.
 
